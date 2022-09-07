@@ -85,7 +85,7 @@ const images = [
 ];
 
 // settings
-const CHANGE_IMAGE_DELAY = 1000;
+const CHANGE_IMAGE_DELAY = 1;
 
 console.log(images);
 
@@ -101,6 +101,45 @@ leftArrowButton.addEventListener('click', moveCarouselPrevious);
 
 rightArrowButton.addEventListener('click', moveCarouselForward);
 
+// bottone che switcha la direzione di scorrimento del carosello
+const bodyHtml = document.querySelector('body');
+bodyHtml.innerHTML += `
+                <div class="container">
+                    <button id="switch-button">
+                        Switch Caruosel Flow Direction
+                    </button>
+                </div>
+`;
+
+const switchButton = document.getElementById('switch-button');
+
+let switchIndex = 0;
+
+switchButton.addEventListener('click',
+    function () {
+        switch (switchIndex) {
+            case 0:
+                clearInterval(idInterval);
+                setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
+                switchIndex = 1;
+                break;
+            case 1:
+                clearInterval(idInterval);
+                setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+                switchIndex = 0;
+                break;
+        }
+
+        // if (switchIndex === 0) {
+        //     setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
+        //     switchIndex++;
+        // } if (switchIndex === 1) {
+        //     setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+        //     switchIndex--;
+        // }
+    }
+)
+
 
 function buildCarousel(urls, activeIndex) {
     const carouselImages = document.querySelector('.carousel-images');
@@ -115,6 +154,7 @@ function buildCarousel(urls, activeIndex) {
     carouselImages.innerHTML = content;
     carouselThumbs.innerHTML = content;
 }
+
 
 function moveCarouselForward() {
     clearInterval(idInterval)
