@@ -101,10 +101,23 @@ leftArrowButton.addEventListener('click', moveCarouselPrevious);
 
 rightArrowButton.addEventListener('click', moveCarouselForward);
 
+
 // bottone che switcha la direzione di scorrimento del carosello
 const bodyHtml = document.querySelector('body');
+
+let newButton = document.createElement('button');
+newButton.append('Switch Caruosel Flow Direction');
+newButton.classList.add('switch-button');
+
+document.body.append(newButton);
+
+const switchButton = document.querySelector('.switch-button');
+
+
+// IL BOTTONE GENERATO COSI' PER QUALCHE MOTIVO ROMPE LE FRECCE DI SCORRIMENTO
+/*
 bodyHtml.innerHTML += `
-                <div class="container">
+                <div class="container-switch-button">
                     <button id="switch-button">
                         Switch Caruosel Flow Direction
                     </button>
@@ -112,34 +125,36 @@ bodyHtml.innerHTML += `
 `;
 
 const switchButton = document.getElementById('switch-button');
+*/
 
-let switchIndex = 0;
+let switchIndex = true;
 
 switchButton.addEventListener('click',
-    function () {
-        switch (switchIndex) {
-            case 0:
-                clearInterval(idInterval);
-                setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
-                switchIndex = 1;
-                break;
-            case 1:
-                clearInterval(idInterval);
-                setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
-                switchIndex = 0;
-                break;
-        }
-
-        // if (switchIndex === 0) {
-        //     setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
-        //     switchIndex++;
-        // } if (switchIndex === 1) {
-        //     setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
-        //     switchIndex--;
-        // }
-    }
+    switchCarouselDirection
 )
 
+
+function switchCarouselDirection() {
+
+    // METODO CON IF
+
+    let switchInterval;
+
+    if (switchIndex === true) {
+        clearInterval(switchInterval);
+        switchInterval = setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
+    } if (switchIndex === false) {
+        clearInterval(switchInterval);
+        switchInterval = setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+    }
+
+    clearInterval(idInterval);
+
+    switchIndex = !switchIndex;
+}
+
+
+// FUNZIONI
 
 function buildCarousel(urls, activeIndex) {
     const carouselImages = document.querySelector('.carousel-images');
@@ -165,12 +180,30 @@ function moveCarouselForward() {
 }
 
 function moveCarouselPrevious() {
+    console.log('Mi hai cliccato');
     clearInterval(idInterval)
     // se l'indice è in prima posizione si valorizza all'ultima posizione dell'array
     activeIndex = activeIndex > 0 ? activeIndex - 1 : images.length - 1;
     buildCarousel(images, activeIndex);
     idInterval = setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
 }
+
+
+// METODO CON SWITCH (BOTTONE CHE CAMBIA DIREZIONE FLUSSO)
+/*
+switch (switchIndex) {
+    case 0:
+        clearInterval(idInterval);
+        setInterval(moveCarouselPrevious, CHANGE_IMAGE_DELAY * 1000);
+        switchIndex = 1;
+        break;
+    case 1:
+        clearInterval(idInterval);
+        setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+        switchIndex = 0;
+        break;
+}
+*/
 
 
 /*
