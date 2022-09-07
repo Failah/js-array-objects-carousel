@@ -89,8 +89,6 @@ const CHANGE_IMAGE_DELAY = 1000;
 
 console.log(images);
 
-
-
 let activeIndex = 0;
 buildCarousel(images, activeIndex);
 
@@ -135,6 +133,7 @@ function moveCarouselPrevious() {
 }
 
 
+/*
 function createImageArray(numImages) {
     const images = [];
     for (let i = 1; i <= numImages; i++) {
@@ -145,6 +144,7 @@ function createImageArray(numImages) {
 
     return images;
 }
+*/
 
 
 

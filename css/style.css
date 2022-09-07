@@ -14,16 +14,16 @@ body {
 
 /* content */
 
-.container{
+.container {
   max-width: 1200px;
   margin: 0 auto
 }
 
-.carousel-container{
+.carousel-container {
   position: relative;
 }
 
-.carousel-images{
+.carousel-images {
   position: relative;
   height: 50vh;
 }
@@ -38,12 +38,12 @@ body {
   display: none;
 }
 
-.carousel-thumbs{
+.carousel-thumbs {
   display: flex;
   height: 150px;
 }
 
-.carousel-thumbs .carousel-img.active{
+.carousel-thumbs .carousel-img.active {
   border: 3px solid red;
   opacity: 1;
 }
@@ -56,11 +56,11 @@ body {
   opacity: 0.5;
 }
 
-.carousel-img.active{
+.carousel-img.active {
   display: inline-block;
 }
 
-.carousel-navigation{
+.carousel-navigation {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -69,10 +69,31 @@ body {
   transform: translateY(-50%);
 }
 
-.carousel-navigation button{
-  font-size: 2rem;
+.carousel-navigation button {
+  font-size: 1.75rem;
   border-radius: 50%;
-  border: 2px solid black;
-  background-color: yellowgreen;
+  border: 1px solid black;
+  background-color: bisque;
+  padding: 10px;
+  opacity: 65%;
 }
 
+#left-arrow {
+  margin-left: 8px;
+}
+
+#right-arrow {
+  margin-right: 8px;
+}
+
+
+/* effects */
+
+.carousel-navigation button:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.carousel-navigation button:active {
+  transform: scale(0.95);
+}
