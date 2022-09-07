@@ -129,6 +129,8 @@ const switchButton = document.getElementById('switch-button');
 
 let switchIndex = true;
 
+let switchInterval;
+
 switchButton.addEventListener('click',
     switchCarouselDirection
 )
@@ -137,8 +139,8 @@ switchButton.addEventListener('click',
 function switchCarouselDirection() {
 
     // METODO CON IF
+    clearInterval(idInterval);
 
-    let switchInterval;
 
     if (switchIndex === true) {
         clearInterval(switchInterval);
@@ -172,6 +174,7 @@ function buildCarousel(urls, activeIndex) {
 
 
 function moveCarouselForward() {
+    console.log('Mi hai cliccato DX');
     clearInterval(idInterval)
     // se l'indice si trova in fondo allora lo riposizione all'inizio dell'array
     activeIndex = activeIndex < images.length - 1 ? activeIndex + 1 : 0;
@@ -180,7 +183,7 @@ function moveCarouselForward() {
 }
 
 function moveCarouselPrevious() {
-    console.log('Mi hai cliccato');
+    console.log('Mi hai cliccato SX');
     clearInterval(idInterval)
     // se l'indice è in prima posizione si valorizza all'ultima posizione dell'array
     activeIndex = activeIndex > 0 ? activeIndex - 1 : images.length - 1;
