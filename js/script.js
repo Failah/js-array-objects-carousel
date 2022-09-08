@@ -158,14 +158,14 @@ function switchCarouselDirection() {
 
 // FUNZIONI
 
-function buildCarousel(urls, activeIndex) {
+function buildCarousel(places, activeIndex) {
     const carouselImages = document.querySelector('.carousel-images');
     const carouselThumbs = document.querySelector('.carousel-thumbs');
     let content = '';
-    for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
+    for (let i = 0; i < places.length; i++) {
+        const place = places[i];
         const imageClass = i === activeIndex ? 'carousel-img active' : 'carousel-img'
-        content += `<img class="${imageClass}" src="${urls[i]['url']}" />`;
+        content += `<img class="${imageClass}" src="${place.url}" />`;
     }
     // console.log({content});
     carouselImages.innerHTML = content;
